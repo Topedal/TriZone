@@ -1,0 +1,85 @@
+#config_version=5
+
+##! mode: TRI
+
+#    TRI achievement progress is retained over ball drain for each player
+
+mode:
+    start_events: ball_starting
+    #stop_events: ball_drain
+    priority: 130
+       
+
+variable_player:
+
+    TRIdone:
+    #TRIsg_complete:
+        TRIprog: 1
+          
+    TRIscore3k:
+        score: 3000    
+    TRIscore5k:
+        score: 5000    
+    TRIscore10k:
+        score: 10000  
+              
+extra_balls:
+    score_one:
+        enabled: true
+        award_events: TRIscoreEB
+            
+event_player:
+    TRIdone{current_player.TRIprog == 1}: TRIscore3k 
+    TRIdone{current_player.TRIprog == 2}: TRIscore5k
+    TRIdone{current_player.TRIprog == 3}: TRIscore10k
+    TRIdone{current_player.TRIprog == 4}: TRIscoreEB 
+    TRIdone{current_player.TRIprog == 5}: TRIscoreSpec  #- see mc config  credit: 
+    
+light_player:
+    TRIscoreEB:
+        l_shoot_again: on    # this turns off when ball_starting, due to mode start?
+        l_shoot_again_hb: on
+
+shot_profiles:
+  TRIprof:
+    states:
+    - name: state1
+      show: off
+    - name: state3
+      show: on
+
+accruals:
+    TRIacc:
+        events:
+            - T_hit
+            - R_hit
+            - I_hit
+        events_when_complete: TRIdone
+        reset_on_complete: true
+        disable_on_complete: false
+
+shot_groups:   # not used c logic block accrual
+  # TRIsg:
+    # shots: T, R, I
+    # reset_events: TRIsg_complete
+
+shots:
+    T:
+        switch: s_T
+        profile: TRIprof 
+        show_tokens:
+            light: l_T
+        #reset_events: TRIsg_complete    #this works with shot groups
+        reset_events: TRIdone
+    R:
+        switch: s_R
+        profile: TRIprof 
+        show_tokens:
+            light: l_R
+        reset_events: TRIdone
+    I:
+        switch: s_I
+        profile: TRIprof 
+        show_tokens:
+            light: l_I
+        reset_events: TRIdone

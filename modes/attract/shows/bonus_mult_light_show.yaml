@@ -1,0 +1,43 @@
+#show_version=5 
+##! show: bonus_mult_light_show
+
+- duration: 1
+  lights:
+    l_2X: 00ff00  
+    l_3X: 000000
+    l_4X: 000000
+    l_5X: 000000
+- duration: 1
+  lights:
+    l_2X: 000000
+    l_3X: 00ff00
+    l_4X: 000000
+    l_5X: 000000
+- duration: 1
+  lights:
+    l_2X: 000000  
+    l_3X: 000000
+    l_4X: 00ff00
+    l_5X: 000000
+- duration: 1
+  lights:
+    l_2X: 000000
+    l_3X: 000000
+    l_4X: 000000
+    l_5X: 00ff00
+    
+    
+    
+# - duration: 1
+  # lights:
+    # l_4x_bonus: 00ff00  
+# - duration: 1
+  # lights:
+    # l_4x_bonus: 000000
+# - duration: 1
+  # lights:
+    # l_5x_bonus: 00ff00  
+# - duration: 1
+  # lights:
+    # l_5x_bonus: 000000
+    

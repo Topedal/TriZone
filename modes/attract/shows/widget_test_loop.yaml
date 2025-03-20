@@ -1,0 +1,274 @@
+#show_version=5
+##! show: widget_test_loop
+
+# widget_player:
+  # mode_attract_started.1:
+    # widg1:    # this is the widger name
+      # action: add
+      # slide: awesome_slide
+      
+
+# widgets:
+  # widg1:
+    # - type: text
+      # text: I'm added
+      # #x: bottom
+      
+
+- time: 0
+#- duration: 5s
+  slides:
+    awesome_slide: #[]
+      widgets:
+      - type: text
+        text: Widget loop test
+        font_size: 50
+      transition:
+        type: push
+        duration: 2s
+        direction: left
+   #   expire: 3s
+   
+# - duration: 5s
+  # slides:
+    # HowTo: 
+    # expire: 4s
+
+
+- time: '+2'
+#- duration: 3s
+  slides:
+    press_start:
+      widgets:
+      - type: Text
+        text: PRESS STARTx
+        animations:
+          pre_show_slide:
+            - property: opacity
+              value: 0
+              duration: .5s
+            - property: opacity
+              value: 1
+              duration: .5s
+              repeat: false
+      - type: Text
+        text: FREE PLAY
+        color: green
+        y: 10
+        anchor_y: bottom
+      transition:
+         type: move_in
+         duration: 1s
+         direction: right
+
+- duration: 6s 
+  slides:        
+    HowTo:
+        widgets:
+            - type: image
+              #image: Sepia4
+              image: BWplayfield5
+              x: 799
+              anchor_x: right
+            - type: text
+              text: How to Play
+              font_size: 60
+              color: red
+              bold: true
+              x: 232 #400
+              y: 515
+              anchor_x: center
+              anchor_y: bottom
+            - type: text
+              text: A B - bonus multiplier
+              font_size: 40
+              color: green
+              bold: false
+              x: 30
+              y: 425
+              anchor_x: left
+              anchor_y: bottom
+            - type: text
+              text: T R I - scores lit value
+              font_size: 40
+              color: blue
+              bold: false
+              x: 30
+              y: 350
+              anchor_x: left
+              anchor_y: bottom
+            - type: text
+              text: Z O N E - lites 1 to 4
+              font_size: 40
+              color: yellow
+              bold: false
+              x: 30
+              y: 275
+              anchor_x: left
+              anchor_y: bottom
+            - type: text
+              text: 1 - lites spinner
+              font_size: 25
+              color: purple
+              bold: false
+              x: 50
+              y: 220
+              anchor_x: left
+              anchor_y: bottom  
+            - type: text
+              text: 2 - lites eject
+              font_size: 25
+              color: white
+              bold: false
+              x: 50
+              y: 180
+              anchor_x: left
+              anchor_y: bottom
+            - type: text
+              text: 3 - lites drops
+              font_size: 25
+              color: orange
+              bold: false
+              x: 50
+              y: 140
+              anchor_x: left
+              anchor_y: bottom                
+            - type: text
+              text: 4 - lites outlanes for special
+              font_size: 25
+              color: pink
+              bold: false
+              x: 50
+              y: 100
+              anchor_x: left
+              anchor_y: bottom                
+              
+
+# - duration: 3
+  # slides:
+    # mission_pinball:
+      # widgets:
+      # - type: Text
+        # text: MISSION PINBALLx
+        # color: red
+      # transition:
+         # type: move_in
+         # duration: 1s
+         # direction: top
+         
+# - duration: 2
+  # slides:
+    # card_slide:
+      # widgets:
+      # - type: image
+        # image: Splash
+        # scale: 0.4
+      
+# - duration: 5
+  # slides:
+    # howto:
+      # widgets:     # http://docs.missionpinball.org/en/latest/displays/widgets/animation.html
+        # - type: text
+          # text: How to Play
+          # color: red
+          # font_size: 20
+          # bold: true
+          # y: 150
+          # animations:
+            # show_slide:
+              # - property: opacity
+                # value: 1
+                # duration: 0.5s
+              # - property: opacity
+                # value: 0
+                # duration: 0.5s
+                # #repeat: true
+        # - type: text
+          # text: Making A + B increases multiplier
+          # y: 100
+          # animations:
+            # show_slide:
+              # - property: opacity
+                # value: 1
+                # duration: 0.5s
+                # timing: after_previous
+              # - property: opacity
+                # value: 0
+                # duration: 0.5s     
+                # #timing: after_previous                
+
+
+
+#############################################################################
+      
+      
+      
+# widgets:
+  # widg1:
+    # - type: text
+      # text: I'm added
+      # x: bottom
+          
+          
+      # transition:
+        # type: push
+        # duration: 2s
+        # direction: left
+          
+                
+            
+
+
+# widgets:
+  # instructions:
+    # - type: text
+      # text: How to Play
+      # color: 
+      # font_size: 30
+      # anchor_x: left
+      # anchor_y: bottom
+      # x: 10%
+      # y: 20%
+      
+  # AB:
+    # - type: text
+      # text: Making A+B increases Bonus Mulitipler 2X to 5X
+      # color:
+      # anchor_x: left
+      # anchor_y: bottom
+      # x: 10%
+      # y: 
+      
+# widget_player:
+  # game_started:
+    # instructions:
+      # slide: howto      
+    # AB:
+      # slide: howto      
+     
+      
+  # base_score_widget:
+    # - type: text
+      # text: (score)
+      # #style: score_style_singleplayer
+  # # base_level_widget:
+    # # - type: text
+      # # text: LVL (player|level)
+      # # style: mp_player_3
+  # base_ball_widget:
+    # - type: text
+      # text: BALL (ball)
+      # anchor_y: bottom
+          # #style: small
+      # y: bottom+1
+      # #style: mp_player_4
+      
+# widget_player:
+  # # First event, before additional players have a chance to enter
+  # game_started:
+    # base_score_widget:
+      # slide: base_slide
+    # # base_level_widget:
+      # # slide: base_slide
+    # base_ball_widget:
+      # slide: base_slide

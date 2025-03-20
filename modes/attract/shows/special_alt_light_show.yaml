@@ -1,0 +1,24 @@
+#show_version=5 
+##! show: special_alt_light_show
+
+# - duration: 1
+  # lights:
+    # l_l_spec: ff0000
+    # l_r_spec: ff0000
+# - duration: 1
+  # lights:
+    # l_l_spec: 000000
+    # l_r_spec: 000000
+- duration: 1
+  lights:
+    l_l_spec: ff0000  
+    l_r_spec: 000000  
+- duration: 1
+  lights:
+    l_l_spec: 000000  
+    l_r_spec: ff0000  
+# - duration: 1
+  # lights:
+    # l_l_spec: 000000  
+    # l_r_spec: 000000  
+

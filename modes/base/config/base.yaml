@@ -1,0 +1,264 @@
+#config_version=5
+
+##! mode: base
+
+# Tri Zone base  
+#    TRI is retained over ball drain
+#    Zone resets on ball drain`
+#    Multiplier hold over ball drain id mult <=4, resets if ==5
+
+mode:
+    start_events: ball_starting
+    #stop_events: ball_drain
+    priority: 120
+    
+config:
+     - light_player.yaml    # this goes in ..\mode\base
+
+variable_player:
+    sw_A:
+        score: 1000
+    sw_B: 
+        score: 1000
+    sw_tenpt:
+        score: 10
+    sw_twentypt:
+        score: 20
+    sw_fiftypt:
+        score: 50
+    sw_out:
+        score: 500
+    sw_tri:
+        score: 1000       
+    sw_bonus:
+        bonus: 1 
+    sw_outlane:
+        score: 500    
+        
+    player_bonus{current_player.bonus>19}:    # limit bonus count
+        bonus:
+            int: 19
+            action: set
+    player_bonus_multiplier{current_player.bonus_multiplier>5}:
+        bonus_multiplier:
+            int: 5
+            action: set    
+    player_TRIprog{current_player.TRIprog>5}:
+        TRIprog:
+            int: 1
+            action: set   
+    player_ZONEprog{current_player.ZONEprog>4}:
+        ZONEprog:
+            int: 4
+            action: set 
+            
+            
+#variable_player:              #want to set machine_last_match_no = winner_number
+    mode_match_stopping:
+        machine_last_match_no:
+            int: 15  #winner_number
+            action: set
+   
+    # s_hs_reset_active:
+        # #machine.score1_value:
+        # machine_score1_value:
+            # int: 0
+            # action: set
+
+
+   
+    # # score_reset:
+        # # machine|score1_value:
+    # mode_base_started:
+        # #machine_high_score_category_score1_value:
+        # #machine_var_score1_value:
+        # score1_value:
+            # int: 0
+            # action: set
+     
+    # s_hs_reset_active: 
+    # #score_reset:
+        # score1_value:
+            # int: 0
+            # action: set
+            
+
+# event_player:
+    # s_hs_reset_active:
+        # #score1_value:
+        # {machine|score1_value}:
+        # #(high_score_category)(
+            # int: 0
+            # action: set            
+    # s_r_flip_active:
+        # display_loop:
+            # action: advance
+    # player_added.1{num==1}:
+        # light: l_1cplay
+    # ZONEscoreSpec:
+        # ZONEprog:
+            # int: 2
+            # action: set 
+    
+    
+
+slides:
+    # #- duration: 5
+    # # welcome_slidem:
+        # # widgets:
+            # # - type: text
+              # # text: PINBALL - in mode!
+              # # font_size: 50
+              # # color: green
+            # # - type: rectangle
+              # # width: 280
+              # # height: 60
+              
+    slide_1:
+        - type: text
+          text: (player1|score)
+          number_grouping: true
+          min_digits: 2
+          y: middle+2
+          #persist_slide: yes
+          # style: tall_title
+        - type: text
+          text: BALL (player1|ball) #   (machine|credits_string)
+          anchor_y: bottom
+          #style: small
+          y: bottom+1   
+        - type: text
+          text: In mode  base #Red inc val (inc_rdrop_val)
+          y: middle
+          x: left+100
+        - type: text
+          text: (player2|score)
+          #text: A_latch (A_latch)
+          y: middle-50
+          x: left+100
+        - type: text
+          text: B_latch (B_latch)
+          y: middle-70
+          x: left+100
+        - type: text
+          text: Mult (bonus_multiplier)
+          y: middle-90
+          x: left+100
+        - type: text
+          text: ZONEprog (ZONEprog)
+          y: middle-110
+          x: left+100
+        # widgets:  
+        # - type: text
+          # text: Timer (drop_roll_variable_times_100)
+          # y: middle-130
+          # x: left+100
+          
+          
+          #drop_roll
+          
+        # # - type: text
+          # # text: wdrop_eb_enable (wdrop_eb_enable)
+          # # y: middle-100
+          # # x: left+100         
+        # # - type: text
+          # # text: Mult value (bonus_multiplier)
+          # # #text: Bonus count (bns_cnt{value})
+          # # y: middle+50
+          # # x: left+100
+        # # - type: text
+          # # text: rd5_myro (current_player.rd5_myro)
+          # # y: middle+70
+          # # x: left+100
+          
+    slide_2:
+        - type: text
+          text: (player1|score)  #, (player2|score), (player3|score), (player4|score)
+          number_grouping: true
+          min_digits: 2
+          y: middle+2
+          #persist_slide: yes
+          # style: tall_title
+          #style: mp_player_1
+    #     - type: text
+     #     text: (player2|score)  #, (player2|score), (player3|score), (player4|score)
+      #    number_grouping: true
+       #   min_digits: 2
+        #  y: middle-2
+          # #persist_slide: yes
+          # # style: tall_title
+          # style: mp_player_2
+        
+        - type: text
+          text: BALL (player1|ball) #   (machine|credits_string)
+          anchor_y: bottom
+          #style: small
+          y: bottom+1   
+        - type: text
+          text: In mode - AB #Red inc val (inc_rdrop_val)
+          y: middle
+          x: left+100
+        - type: text
+          text: bonus_hold (bonus_hold)
+          #text: (player1|bonus_hold), (player2|bonus_hold), (player3|bonus_hold), (player4|bonus_hold),
+          y: middle-50
+          x: left+100
+        - type: text
+          text: B_latch (B_latch)
+          y: middle-70
+          x: left+100
+        - type: text
+          text: bonusM (bonus_multiplier)
+          #text: (player1|bonus_multiplier), (player2|bonus_multiplier)
+          #text: (player1|bonus_multiplier), (player2|bonus_multiplier), (player3|bonus_multiplier), (player4|bonus_multiplier)
+          y: middle-90
+          x: left+100
+        - type: text
+          text: ZONEprog (ZONEprog)
+          y: middle-110
+          x: left+100
+        # widgets:  
+        # - type: text
+          # text: Timer (drop_roll_variable_times_100)
+          # y: middle-130
+          # x: left+100
+          
+          
+          #drop_roll
+          
+        # # - type: text
+          # # text: wdrop_eb_enable (wdrop_eb_enable)
+          # # y: middle-100
+          # # x: left+100         
+        # # - type: text
+          # # text: Mult value (bonus_multiplier)
+          # # #text: Bonus count (bns_cnt{value})
+          # # y: middle+50
+          # # x: left+100
+        # # - type: text
+          # # text: rd5_myro (current_player.rd5_myro)
+          # # y: middle+70
+          # # x: left+100   
+          
+slide_player:
+    #single_player_ball_started: welcome_slidem
+    #single_player_ball_started: slide_1
+    #multi_player_ball_started: slide_1
+
+# shots:
+    # T:
+        # switch: s_T
+        # profile: TRIprof 
+        # show_tokens:
+            # light: l_T
+        # #reset_events: TRIsg_complete    #this works with shot groups
+        # reset_events: TRIdone
+
+# shots:
+    # R:
+        # switch: s_R
+        # profile: TRIprof 
+        # show_tokens:
+            # light: l_R
+        # #reset_events: TRIsg_complete    #this works with shot groups
+        # reset_events: TRIdone

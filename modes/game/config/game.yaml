@@ -1,0 +1,98 @@
+#config_version=5
+
+#  http://docs.missionpinball.org/en/latest/displays/slides/multiplayer_display.html
+#  http://docs.missionpinball.org/en/latest/displays/widgets/index.html
+#  http://docs.missionpinball.org/en/latest/displays/widgets/reusable_widgets.html
+#  http://docs.missionpinball.org/en/latest/config/widget_styles.html
+
+##! mode: game
+
+# variable_player:              #want to set machine_last_match_no = winner_number
+  # mode_match_stopping:
+    # machine_last_match_no:
+      # int: 15  #winner_number
+      # action: set
+
+
+light_player:                # this for how WMS player lights work, 
+  player_added.1{num==1}:      # only the highest number of the coined up players is on
+    l_1cplay: on
+    l_2cplay: off
+    l_3cplay: off
+    l_4cplay: off
+  player_added.2{num==2}:
+    l_1cplay: off
+    l_2cplay: on
+    l_3cplay: off
+    l_4cplay: off
+  player_added.3{num==3}:
+    l_1cplay: off
+    l_2cplay: off
+    l_3cplay: on
+    l_4cplay: off
+  player_added.4{num==4}:
+    l_1cplay: off
+    l_2cplay: off
+    l_3cplay: off
+    l_4cplay: on
+ # credits_added{machine.credits_whole_num >=1}:    # event c no keyword, but use vars
+  "{machine.credits_whole_num >=1}":                #subscribed config player  http://docs.missionpinball.org/en/latest/events/overview/conditional.html?highlight=conditional%20event
+    l_credits_apron: on
+  # "{machine_var_credits_value >=1}":                #subscribed config player  http://docs.missionpinball.org/en/latest/events/overview/conditional.html?highlight=conditional%20event
+    # l_credits_apron: on
+    
+    
+  # "{credits_whole_num >=1}":
+    # l_credits_apron: on
+    
+# event_player:
+    # s_hs_reset_active:
+        # #score1_value:
+        # score1_value:
+        # #(high_score_category)(
+            # int: 0
+            # action: set   
+
+slides:
+  base_slide: []
+
+slide_player:
+  single_player_ball_started: base_slide
+  #T_hit: HowTo
+  
+
+widgets:
+  base_score_widget:
+    - type: text
+      text: Player (number),  (score)
+      #style: score_style_singleplayer
+  # base_level_widget:
+    # - type: text
+      # text: LVL (player|level)
+      # style: mp_player_3
+  base_ball_widget:
+    - type: text
+      text: BALLx (ball)
+      anchor_y: bottom
+          #style: small
+      y: bottom+1
+      #style: mp_player_4
+  cr_info_widget:
+    - type: text
+      text:  (machine|credits_string)
+      y: bottom
+      x: 700
+      anchor_x: right
+      anchor_y: bottom
+
+widget_player:
+  # First event, before additional players have a chance to enter
+  game_started:
+    base_score_widget:
+      slide: base_slide
+    # base_level_widget:
+      # slide: base_slide
+    base_ball_widget:
+      slide: base_slide
+    cr_info_widget:
+      slide: base_slide

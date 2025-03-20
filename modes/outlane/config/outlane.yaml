@@ -1,0 +1,46 @@
+#config_version=5
+
+##! mode: outlane
+
+#    When ZONEprog gets to 4, outlanes lite alternately for Special
+#        when an outlane is hit the ball must drain so mode ends
+
+mode:
+    start_events: ZONEhits4  # triggered from the ZONE mode when "{current_player.TRIprog==4}"
+    #stop_events: ZONEscoreSpec   #ball_drain
+    priority: 200
+                        
+event_player:
+    out_left_lit_hit: ZONEscoreSpec    # triggers a credit
+    out_right_lit_hit: ZONEscoreSpec
+
+shot_profiles:
+  OutProfile:
+   # rotation_pattern: r, r
+    states:
+    - name: unlit
+      show: off
+    - name: lit
+      show: on
+
+shot_groups:
+    out_group:
+        shots: out_left, out_right
+        rotate_events: player_score   # any score event alternates the Spec lites
+  
+shots:  
+    out_left:
+        switch: s_l_outlane
+        profile: OutProfile
+        advance_events: mode_outlane_started  # this kicks of the rotation        
+        show_tokens: 
+            light: l_l_spec
+        reset_events: out_group_hit  # don't want shot to advance because two would be lit
+        
+    out_right:
+        switch: s_r_outlane
+        profile: OutProfile
+        show_tokens: 
+            light: l_r_spec        
+        reset_events:  out_group_hit
+        #advance_events: out_left_hit   #player_score

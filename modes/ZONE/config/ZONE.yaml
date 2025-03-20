@@ -1,0 +1,111 @@
+#config_version=5
+
+##! mode: ZONE
+
+#    ZONE progress resets on ball drain
+
+mode:
+    start_events: ball_starting
+    #stop_events: ball_drain       # this happens automatically
+    priority: 140  
+
+variable_player:
+
+    ZONEdone:             # this from the accural
+    #drop_group_complete:     #this doesn't work - why?
+      ZONEprog: 1
+
+    Eject_hit:
+        score: 10000 if current_player.ZONEprog>=2 else 5000
+        
+    Z_drop_profile_unlit_hit:
+        score: 5000 + (5000 * (current_player.ZONEprog >= 3))  # bodge to get 10k when lit, based on ZONEprog
+    Z_drop_profile_lit_hit:
+        score: 10000
+    O_drop_profile_unlit_hit:
+        score: 5000 + (5000 * (current_player.ZONEprog >= 3))
+    O_drop_profile_lit_hit:
+        score: 10000
+    N_drop_profile_unlit_hit:
+        score: 5000 + (5000 * (current_player.ZONEprog >= 3))
+    N_drop_profile_lit_hit:
+        score: 10000
+    E_drop_profile_unlit_hit:
+        score: 5000 + (5000 * (current_player.ZONEprog >= 3))
+    E_drop_profile_lit_hit:
+        score: 10000
+        
+    ball_drain:
+        ZONEprog: 
+            int: 0
+            action: set
+
+event_player:
+    ZONEdone{current_player.ZONEprog == 4}: ZONEhits4 
+
+accruals:
+    ZONEacc:
+        events:
+            - Z_hit
+            - O_hit
+            - N_hit
+            - E_hit
+        events_when_complete: ZONEdone
+        reset_on_complete: true
+        disable_on_complete: false
+
+shot_profiles:
+  drop_profile:
+    rotation_pattern: r, r, r, r
+    states:
+    - name: unlit
+      show: off
+    - name: lit
+      show: flash
+      loops: -1
+      speed: 10
+    # - name: hit  # like to stay ON for a bit after being  hit
+      # show: on 
+      # #loops: -1
+      # #speed: 10      
+
+shot_groups:
+  drop_group:
+    shots: Z, O, N, E
+    rotate_events: timer_drop_rotator_tick
+    reset_events: drop_group_complete
+
+shots:
+    Z:
+        switch: s_Z_drop
+        profile: drop_profile 
+        advance_events: mode_ZONE_started     # this kicks of the rotation
+        show_tokens:
+            light: l_Z
+        reset_events: Z_drop_profile_unlit_hit, ball_drain    # don't want shot to advance because two would be lit
+    O:
+        switch: s_O_drop
+        profile: drop_profile 
+        show_tokens:
+            light: l_O
+        reset_events: O_drop_profile_unlit_hit, ball_drain
+    N:
+        switch: s_N_drop
+        profile: drop_profile 
+        show_tokens:
+            light: l_N
+        reset_events: N_drop_profile_unlit_hit, ball_drain
+    E:
+        switch: s_E_drop
+        profile: drop_profile 
+        show_tokens:
+            light: l_E
+        reset_events: E_drop_profile_unlit_hit, ball_drain
+    
+    Eject:
+        switch: s_eject
+        
+timers:
+    drop_rotator:
+        start_running: true
+        tick_interval: 3s

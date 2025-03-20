@@ -1,0 +1,71 @@
+#config_version=5
+
+##! mode: my_mode
+##! mode: high_score
+
+# http://docs.missionpinball.org/en/latest/game_logic/high_scores/index.html?highlight=hi%20score#high-scores
+
+mode:
+  priority: 500
+  start_events: game_ending, start_high_score
+  use_wait_queue: true
+
+high_score:
+  _overwrite: true
+  enter_initials_timeout: 60s
+  #enter_initials_display_time: 4s
+  award_slide_display_time: 7s
+  
+  categories: !!omap   #?  what is this
+  - score:
+      - HighestMan 
+   #   GRAND CHumpAMPION
+      # - myHIGH SCORE n
+      # - HIGH SCORE Xy
+      # - HIGH SCORE 3
+      # - HIGH SCORE 4
+  # - loops:
+      # - LOOP CHAMP
+  defaults:
+    score:
+      - BRI: 3242
+      # - GHK: 2323
+      # - JK: 1337
+      # - QC: 42
+      # - MPF: 23
+    # loops:
+      # - JK: 42
+      
+
+
+slide_player:
+  _overwrite: true
+  # high_score_enter_initials: 
+    # high_score_enter_initials
+      # #expire: 5s
+      # #- duration: 3s
+  # high_score_award_display: 
+    # high_score_award_display
+  high_score_enter_initials: high_score_enter_initials
+  high_score_award_display: high_score_award_display
+
+slides:
+  _overwrite: true
+  high_score_enter_initials:
+    #- duration: 5s
+    - type: text
+      #style: big
+      font_size: 18
+      text: NEW HS baby! ENT Init - overwrite screen
+      color: ffff00
+      x: 205
+      y: 90
+      
+  high_score_award_display:
+    - type: text
+      text: Daves award overwrite (player_name) - HSaward
+      font_size: 18
+      color: 00ffff
+      x: 105
+      y: 290
+      

@@ -1,0 +1,17 @@
+#show_version=5 
+##! show: zone_light_show
+
+# block flash
+
+- duration: 1
+  lights:
+    l_1: ffffff  
+    l_2: ffffff
+    l_3: ff8000
+    l_4: ff0000
+- duration: 1
+  lights:
+    l_1: 000000  
+    l_2: 000000
+    l_3: 000000
+    l_4: 000000

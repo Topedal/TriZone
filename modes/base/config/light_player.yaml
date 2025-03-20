@@ -1,0 +1,73 @@
+#config_version=5
+
+# light_player.yaml   ..\game\config\light_player.yaml
+            # this is the general file and is called from config: section settings in base mode
+
+light_player:
+        
+    "{current_player.TRIprog==1}":    # Only one TRIprog light on at any time, carries over after ball drain
+        l_T3k: on
+    "{current_player.TRIprog==2}":
+        l_T5k: on
+    "{current_player.TRIprog==3}":
+        l_T10k: on
+    "{current_player.TRIprog==4}":
+        l_Teb: on
+    "{current_player.TRIprog==5}":
+        l_Tspec: on
+        
+    "{current_player.ZONEprog>=1}":    # Lower level lights remain on, reset to all off on ball drain
+        l_1: on
+        l_spin: on
+    "{current_player.ZONEprog>=2}":
+        l_2: on
+        l_eject: on
+    "{current_player.ZONEprog>=3}":
+        l_3: on
+        drops: on
+    "{current_player.ZONEprog>=4}":
+        l_4: on
+        
+        
+    player_bonus:          ## maybe this should be current_player.bonus%10>=1 etc
+        bonus: off        
+    player_bonus{value%10>=1}:       # player_bonus{value%10>=1}:   etc to fill bonus tree
+        l_1k: on
+    player_bonus{value%10>=2}:
+        l_2k: on    
+    player_bonus{value%10>=3}:
+        l_3k: on
+    player_bonus{value%10>=4}:
+        l_4k: on      
+    player_bonus{value%10>=5}:
+        l_5k: on
+    player_bonus{value%10>=6}:
+        l_6k: on
+    player_bonus{value%10>=7}:
+        l_7k: on
+    player_bonus{value%10>=8}:
+        l_8k: on
+    player_bonus{value%10>=9}:
+        l_9k: on
+    player_bonus{value>=10}:
+        l_10k: on
+     
+    player_bonus_multiplier:              # need to carry this over on ball drain if <= 4
+        bmult: off
+    "{current_player.bonus_multiplier>=2}":
+        l_2X: on
+    "{current_player.bonus_multiplier>=3}":
+        l_3X: on
+    "{current_player.bonus_multiplier>=4}":
+        l_4X: on
+    "{current_player.bonus_multiplier>=5}":
+        l_5X: on
+        
+    "{current_player.number==1}":      # these show which player is playing NOW
+        l_p1up: on
+    "{current_player.number==2}":
+        l_p2up: on   
+    "{current_player.number==3}":
+        l_p3up: on
+    "{current_player.number==4}":
+        l_p4up: on

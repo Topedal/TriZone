@@ -1,0 +1,14 @@
+#show_version=5 
+##! show: bot_AB_light_show
+
+- duration: 2
+  lights:
+    l_b_A: ffffff
+    l_b_B: ffffff
+    l_shoot_again: orange
+- duration: 1
+  lights:
+    l_b_A: 000000
+    l_b_B: 000000
+    l_shoot_again: 000000
+    

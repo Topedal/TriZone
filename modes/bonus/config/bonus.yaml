@@ -1,0 +1,30 @@
+#config_version=5
+
+##! mode: bonus
+
+# have a read on que_relay_player   http://docs.missionpinball.org/en/latest/config/queue_relay_player.html
+#    to stage teh multiple count down and also see syncronise
+
+mode_settings:
+    display_delay_ms: 500
+    hurry_up_delay_ms: 500
+    hurry_up_event: flipper_cancel
+    # end_bonus_event: player_score
+    keep_multiplier: True #False #true #false            # automatically resets the bonus_multiplier var
+    #keep_multiplier: true if {current_player.bonus_multiplier<=4} else false
+    #keep_multiplier: true if "{player_bonus_multiplier{value<5}" else false
+    bonus_entries:
+        - event: eob_bonus
+          score: 1000
+          player_score_entry: bonus
+          reset_player_score_entry: true
+          skip_if_zero: true
+          
+          
+# would like a count down bonus light show
+
+
+# I would separate this into multiple parts:
+# 1. Bonus scoring. Based on the shot hits I would increment some player variable
+# 2. I would create a mode to control lights based on the variable value. Something with modulo probaby
+# 3. For bonus scoring you need a counter which counts down from the bonus player variable to zero and score points along the way while updating lifts. Somebody recently posted such a mode. I think Jeremy.

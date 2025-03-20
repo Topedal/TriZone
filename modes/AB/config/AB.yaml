@@ -1,0 +1,63 @@
+#config_version=5
+
+##! mode: AB
+
+mode:
+    start_events: ball_starting
+    #start_events: game_started
+    #stop_events: ball_drain
+    priority: 125
+    
+config:
+#    - AB_player.yaml    # this goes in ..\modes\this-mode\config
+                            # copy and change the name to suit too
+
+variable_player:
+
+    ABgrp_complete:
+      bonus_multiplier: 1
+      
+    # mode_AB_started:
+        # bonus_multiplier: bonus_multiplier "{if current_player.bonus_multiplier_val <=4}" else 1
+            # # int: current_player_bonus_hold
+            # # action: set
+
+    ball_drain:      
+        # hold_bm: bonus_multiplier "{if current_player.bonus_multiplier <=4}" else 1
+        current_player_bonus_hold:   #maybe something like player[x]-bon-mult-hold   #so it can be reset on ball start if <5
+            int: bonus_multiplier 
+            action: set  
+      #  bonus_hold{current_player.bonus_multiplier==5}:
+      #      int: 1
+      #      action: set            
+        
+
+shot_profiles:
+  ABprof:
+    states:
+    - name: state1
+      show: off
+    - name: state3
+      show: on
+    
+shot_groups:
+    ABgrp:
+      shots: Ashot, Bshot
+      reset_events: ABgrp_complete
+
+shots:
+  Ashot:
+    switches:
+      s_t_A, s_l_inlane 
+    profile: ABprof
+    show_tokens:
+      light: lA
+    reset_events: ABgp_complete
+      
+  Bshot:
+    switches:
+      s_t_B, s_r_inlane
+    profile: ABprof
+    show_tokens:
+      light: lB
+    reset_events: ABgp_complete    

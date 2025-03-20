@@ -1,0 +1,137 @@
+#show_version=5 
+##! show: bonus_light_show
+
+- duration: 1
+  lights:
+    l_1k: 0000ff
+    l_2k: 000000
+    l_3k: 000000
+    l_4k: 000000
+    l_5k: 000000
+    l_6k: 000000
+    l_7k: 000000
+    l_8k: 000000
+    l_9k: 000000
+- duration: 1
+  lights:
+    l_1k: 0000ff
+    l_2k: 0000ff
+    l_3k: 000000
+    l_4k: 000000
+    l_5k: 000000
+    l_6k: 000000
+    l_7k: 000000
+    l_8k: 000000
+    l_9k: 000000
+- duration: 1
+  lights:
+    l_1k: 0000ff
+    l_2k: 0000ff
+    l_3k: 0000ff
+    l_4k: 000000
+    l_5k: 000000
+    l_6k: 000000
+    l_7k: 000000
+    l_8k: 000000
+    l_9k: 000000
+- duration: 1
+  lights:
+    l_1k: 0000ff
+    l_2k: 0000ff
+    l_3k: 0000ff
+    l_4k: 0000ff
+    l_5k: 000000
+    l_6k: 000000
+    l_7k: 000000
+    l_8k: 000000
+    l_9k: 000000
+- duration: 1
+  lights:
+    l_1k: 0000ff
+    l_2k: 0000ff
+    l_3k: 0000ff
+    l_4k: 0000ff
+    l_5k: 0000ff
+    l_6k: 000000
+    l_7k: 000000
+    l_8k: 000000
+    l_9k: 000000
+- duration: 1
+  lights:
+    l_1k: 0000ff
+    l_2k: 0000ff
+    l_3k: 0000ff
+    l_4k: 0000ff
+    l_5k: 0000ff
+    l_6k: 0000ff
+    l_7k: 000000
+    l_8k: 000000
+    l_9k: 000000
+- duration: 1
+  lights:
+    l_1k: 0000ff
+    l_2k: 0000ff
+    l_3k: 0000ff
+    l_4k: 0000ff
+    l_5k: 0000ff
+    l_6k: 0000ff
+    l_7k: 0000ff
+    l_8k: 000000
+    l_9k: 000000
+- duration: 1
+  lights:
+    l_1k: 0000ff
+    l_2k: 0000ff
+    l_3k: 0000ff
+    l_4k: 0000ff
+    l_5k: 0000ff
+    l_6k: 0000ff
+    l_7k: 0000ff
+    l_8k: 0000ff
+    l_9k: 000000
+- duration: 1
+  lights:
+    l_1k: 0000ff
+    l_2k: 0000ff
+    l_3k: 0000ff
+    l_4k: 0000ff
+    l_5k: 0000ff
+    l_6k: 0000ff
+    l_7k: 0000ff
+    l_8k: 0000ff
+    l_9k: 0000ff
+- duration: 1
+  lights:
+    l_1k: 000000
+- duration: 1
+  lights:
+    l_1k: 0000ff
+    l_2k: 000000
+- duration: 1
+  lights:
+    l_2k: 0000ff
+    l_3k: 000000
+- duration: 1
+  lights:
+    l_3k: 0000ff
+    l_4k: 000000
+- duration: 1
+  lights:
+    l_4k: 0000ff
+    l_5k: 000000
+- duration: 1
+  lights:
+    l_5k: 0000ff
+    l_6k: 000000
+- duration: 1
+  lights:
+    l_6k: 0000ff
+    l_7k: 000000
+- duration: 1
+  lights:
+    l_7k: 0000ff
+    l_8k: 000000
+- duration: 1
+  lights:
+    l_8k: 0000ff
+    l_9k: 000000

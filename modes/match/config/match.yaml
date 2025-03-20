@@ -1,0 +1,360 @@
+#config_version=5
+
+##! mode: match
+# in modes/match/config/match.yaml
+
+# grabbed from http://docs.missionpinball.org/en/latest/game_logic/match_mode/index.html?highlight=match#match-mode
+
+ variable_player:              #want to set machine_last_match_no = winner_number
+   mode_match_stopping:
+    fred: 15
+    # machine_last_match_no:
+      # int: 15  #winner_number
+      # action: set
+  
+ # winner_number
+
+queue_relay_player:
+  match_no_match:
+    post: no_match
+    wait_for: slide_no_match_slide_removed
+    #wait_for: s_r_flip_active
+    #wait_for: slide_DR_match_slide_removed
+    pass_args: True
+  match_has_match:
+    post: has_match
+    wait_for: slide_match_slide_removed
+    #wait_for: s_r_flip_active
+    #wait_for: slide_DR_match_slide_removed
+    pass_args: True
+
+mode_settings:
+  non_match_number_step: 10
+
+slide_player:
+   no_match:
+       no_match_slide:
+       #DR_match_slide:
+          expire: 10s
+   has_match:
+       match_slide:
+       #DR_match_slide:
+          expire: 20s
+
+# sound_player:
+    # match_no_match:
+        # no_match_sound:
+            # action: play
+    # match_has_match:
+        # match_sound:
+            # action: play
+
+slides:
+    match_slide:               #orig version
+        - type: text
+          #text: (machine|player1_score)
+          text: (player1|score)
+          font_size: 50
+          x: left+3%
+          y: top-3%
+          anchor_x: left 
+          anchor_y: top              
+          
+        - type: text
+          text: (machine|player2_score)
+          font_size: 50
+          x: right-3%
+          y: top-3%
+          anchor_x: right
+          anchor_y: top          
+          
+        - type: text
+          text: (machine|player3_score)
+          font_size: 50
+          x: left+3%
+          y: bottom+3%
+          anchor_x: left
+          anchor_y: bottom
+          
+        - type: text
+          text: (machine|player4_score)
+          font_size: 50      
+          x: right-3%
+          y: bottom+3%
+          anchor_x: right
+          anchor_y: bottom
+
+
+        # - type: text
+          # text: "Player 1: (match_number0)"
+          # x: left+3%
+          # y: top-20% #100%
+          # anchor_x: left 
+          # anchor_y: top                            
+        # - type: text
+          # text: "Player 2: (match_number1)"
+          # x: left+33%  #right-3% #100%
+          # y: top-20% #100%
+          # anchor_x: left
+          # anchor_y: top
+        # # number_grouping: true
+        # # min_digits: 2
+          # #font_size: 20
+        # - type: text
+          # text: "Player 3: (match_number2)"
+          # x: left+66%  #right-3% #100%
+          # y: top-20% #100%
+          # anchor_x: left
+          # anchor_y: top
+        # - type: text
+          # text: "Player 4: (match_number3)"          
+          # x: right-5% #left+25%  #right-3% #100%
+          # y: top-20% #100%
+          # anchor_x: right
+          # anchor_y: top
+        # 
+        - type: text
+          text: "Match number: (winner_number)"
+          font_size: 50
+          #font_color: ff0000          
+          x: center
+          y: center
+          # anchor_x: center
+          # anchor_y: center
+          
+        - type: text
+          text: "No winners = : (winners)"
+          x: right-40%
+          y: bottom+50
+          
+
+    no_match_slide:               
+        - type: text
+          text: (machine|player1_score)
+          #text: (machine.player1_score)
+          font_size: 50
+          x: left+3%
+          y: top-3%
+          anchor_x: left 
+          anchor_y: top              
+          
+        - type: text
+          text: (machine|player2_score)
+          font_size: 50
+          x: right-3%
+          y: top-3%
+          anchor_x: right
+          anchor_y: top          
+          
+        - type: text
+          text: (machine|player3_score)
+          font_size: 50
+          x: left+3%
+          y: bottom+3%
+          anchor_x: left
+          anchor_y: bottom
+          
+        - type: text
+          text: (machine|player4_score)
+          font_size: 50      
+          x: right-3%
+          y: bottom+3%
+          anchor_x: right
+          anchor_y: bottom
+
+
+        # - type: text
+          # text: "Player 1: (match_number0)"
+          # x: left+3%
+          # y: top-20% #100%
+          # anchor_x: left 
+          # anchor_y: top                            
+        # - type: text
+          # text: "Player 2: (match_number1)"
+          # x: left+33%  #right-3% #100%
+          # y: top-20% #100%
+          # anchor_x: left
+          # anchor_y: top
+        # # number_grouping: true
+        # # min_digits: 2
+          # #font_size: 20
+        # - type: text
+          # text: "Player 3: (match_number2)"
+          # x: left+66%  #right-3% #100%
+          # y: top-20% #100%
+          # anchor_x: left
+          # anchor_y: top
+        # - type: text
+          # text: "Player 4: (match_number3)"          
+          # x: right-5% #left+25%  #right-3% #100%
+          # y: top-20% #100%
+          # anchor_x: right
+          # anchor_y: top
+        # 
+        - type: text
+          text: "Match number: (winner_number)"
+          font_size: 50
+          #font_color: ff0000          
+          x: center
+          y: center
+          # anchor_x: center
+          # anchor_y: center
+          
+        - type: text
+          text: "No winners = : (winners)"
+          x: right-40%
+          y: bottom+50
+
+
+
+          
+    # no_match_slide:  #orig_ok
+        # - type: text
+          # text:    No Match
+          # #font_size: 12
+          # x: left+15%
+          # y: bottom+50%
+          # anchor_x: left
+          # anchor_y: bottom
+
+        # - type: text
+          # text: "Match number: (winner_number)"
+          # x: left+80%
+          # y: bottom+50%          
+          
+          
+          
+        # - type: text
+          # text: "Player 1: (match_number0)"
+          # x: left+3%
+          # y: top-20% #100%
+          # anchor_x: left 
+          # anchor_y: top                            
+        # - type: text
+          # text: "Player 2: (match_number1)"
+          # x: left+33%  #right-3% #100%
+          # y: top-20% #100%
+          # anchor_x: left
+          # anchor_y: top
+        # # number_grouping: true
+        # # min_digits: 2
+          # #font_size: 20
+        # - type: text
+          # text: "Player 3: (match_number2)"
+          # x: left+66%  #right-3% #100%
+          # y: top-20% #100%
+          # anchor_x: left
+          # anchor_y: top
+        # - type: text
+          # text: "Player 4: (match_number3)"
+          # x: right-3% #left+25%  #right-3% #100%
+          # y: top-20% #100%
+          # anchor_x: right
+          # anchor_y: top
+
+#####################
+
+    # match_slide:
+      # widgets:
+        # - type: text
+          # text: DR Match
+          # font_size: 50
+          # y: 60%
+        # - type: text
+          # text: (machine|player1_score)
+          # x: left+3%
+          # y: top-3% #100%
+          # anchor_x: left 
+          # anchor_y: top        
+          # number_grouping: true
+          # min_digits: 2
+          # font_size: 50
+        # - type: text
+          # text: (machine|player2_score)
+          # x: right-3% #100%
+          # y: top-3% #100%
+          # anchor_x: right
+          # anchor_y: top
+          # number_grouping: true
+          # min_digits: 2
+          # font_size: 50
+        # - type: text
+          # text: (machine|player3_score)
+          # x: left+3%
+          # y: bottom+3%
+          # anchor_x: left
+          # anchor_y: bottom
+          # number_grouping: true
+          # min_digits: 2
+          # font_size: 50
+        # - type: text
+          # text: (machine|player4_score)
+          # x: right-3%
+          # y: bottom+3%
+          # anchor_x: right
+          # anchor_y: bottom
+          # number_grouping: true
+          # min_digits: 2
+          # font_size: 50
+        
+        # - type: text
+          # text: "Match number: (winner_number)"
+          # y: bottom+5%
+          # anchor_y: bottom
+        
+      # - type: text
+        # text: Hi Score (machine|score1_value), (machine|score2_value), (machine|score3_value),
+        # #text: (high_score_category)(position)_value
+        # y: bottom+15%
+
+
+    # no_match_slide:
+      # widgets:
+        # - type: text
+          # text: DR NO Match
+          # font_size: 50
+          # y: 60%
+        # - type: text
+          # text: (machine|player1_score)
+          # x: left+3%
+          # y: top-3% #100%
+          # anchor_x: left 
+          # anchor_y: top        
+          # number_grouping: true
+          # min_digits: 2
+          # font_size: 50
+        # - type: text
+          # text: (machine|player2_score)
+          # x: right-3% #100%
+          # y: top-3% #100%
+          # anchor_x: right
+          # anchor_y: top
+          # number_grouping: true
+          # min_digits: 2
+          # font_size: 50
+        # - type: text
+          # text: (machine|player3_score)
+          # x: left+3%
+          # y: bottom+3%
+          # anchor_x: left
+          # anchor_y: bottom
+          # number_grouping: true
+          # min_digits: 2
+          # font_size: 50
+        # - type: text
+          # text: (machine|player4_score)
+          # x: right-3%
+          # y: bottom+3%
+          # anchor_x: right
+          # anchor_y: bottom
+          # number_grouping: true
+          # min_digits: 2
+          # font_size: 50
+        
+        # - type: text
+          # text: "Match number: (winner_number)"
+          # y: bottom+5%
+          # anchor_y: bottom
+        
+
+######################

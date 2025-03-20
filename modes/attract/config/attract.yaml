@@ -1,0 +1,317 @@
+#config_version=5
+##! mode: attract
+
+# event_player:
+    # s_hs_reset_active:
+        # l_hiscore: on
+        #(high_score_category)(
+            # int: 0
+            # action: set 
+
+images:
+    Splash:
+        file: GameCard.jpg
+
+show_player:
+    #mode_attract_started: attract_display_loop
+    mode_attract_started: display_loop
+    
+    s_l_flip_active:            # player manipulation of display with flipper buttons
+        display_loop:
+            action: step_back
+    s_r_flip_active:
+        display_loop:
+            action: advance
+            
+    # s_hs_reset_active:            #cant do this in a show
+        # machine.score1_value:
+            # int: 0
+            # action: set
+            
+    # s_hs_reset_active:
+        # l_hiscore: on
+
+    mode_attract_started.1:     # the LED shows 
+        bonus_mult_light_show:
+            speed: 6 
+    mode_attract_started.2: 
+        special_alt_light_show:
+            speed: 2
+    mode_attract_started.3: 
+        bonus_light_show:
+            speed: 8
+    mode_attract_started.4: 
+        drop_light_show:
+            speed: 5
+    mode_attract_started.5: 
+        zone_light_show:
+            speed: 3
+    mode_attract_started.6: 
+        tri_light_show:
+            speed: 3
+    mode_attract_started.7:
+        top_light_show:
+            speed: 4
+    mode_attract_started.8:
+        bot_AB_light_show:
+            speed: 4
+          
+shows: 
+    display_loop:
+        - time: 0
+          slides: awesome_slide
+        - time: +3
+          slides: press_start
+        - time: +3
+          slides: mission_pinball
+        - time: +6
+          slides: GameCard
+        - time: +3
+          slides: HowTo
+        - time: +8
+          slides: last_game_score_slide1
+        - time: +8
+          slides: show_high_scores
+
+slides:
+#
+    awesome_slide:
+      widgets:
+      - type: text
+        text: WMS Tri Zone
+        font_size: 50
+      transition:
+         type: push
+         duration: 2s
+         direction: left
+
+#- duration: 3s
+#slides:
+    press_start:
+      widgets:
+      - type: Text
+        text: PRESS START
+        font_size: 50
+        animations:
+          pre_show_slide:
+            - property: opacity
+              value: 0
+              duration: .5s
+            - property: opacity
+              value: 1
+              duration: .5s
+              repeat: true
+      # - type: Text
+        # text: FREE PLAY - this si fixed
+        # color: green
+        # y: 10
+        # anchor_y: bottom
+      - type: text
+        text: "(machine|credits_string)"
+        y: 100
+  
+      transition:
+         type: move_in
+         duration: 1s
+         direction: right
+
+#- duration: 5
+#  slides:
+    mission_pinball:
+      widgets:
+      - type: Text
+        text: Mission Pinball Framework
+        color: red
+        font_size: 60
+        bold: true
+        y: 400
+      - type: text
+        text: and
+        color: c0c0c0
+        font_size: 20
+        y: 300
+      - type: text
+        text: Open Pinball Project
+        color: yellow
+        font_size: 60
+        bold: true
+        y: 200
+      transition:
+         type: move_in
+         duration: 1s
+         direction: top
+         
+#- duration: 3
+#  slides:
+    GameCard:
+      widgets:
+      - type: image
+        image: Splash
+        #scale: 0.6
+      
+#- duration: 6s 
+#  slides:        
+    HowTo:
+        widgets:
+            - type: image
+              #image: Sepia4
+              image: BWplayfield5
+              x: 799
+              anchor_x: right
+            - type: text
+              text: How to Play
+              font_size: 60
+              color: red
+              bold: true
+              x: 232 #400
+              y: 515
+              anchor_x: center
+              anchor_y: bottom
+            - type: text
+              text: A B - bonus multiplier
+              font_size: 40
+              color: green
+              bold: false
+              x: 30
+              y: 425
+              anchor_x: left
+              anchor_y: bottom
+            - type: text
+              text: T R I - scores lit value
+              font_size: 40
+              color: blue
+              bold: false
+              x: 30
+              y: 350
+              anchor_x: left
+              anchor_y: bottom
+            - type: text
+              text: Z O N E - lites 1 to 4
+              font_size: 40
+              color: yellow
+              bold: false
+              x: 30
+              y: 275
+              anchor_x: left
+              anchor_y: bottom
+            - type: text
+              text: 1 - lites spinner
+              font_size: 25
+              color: purple
+              bold: false
+              x: 50
+              y: 220
+              anchor_x: left
+              anchor_y: bottom  
+            - type: text
+              text: 2 - lites eject
+              font_size: 25
+              color: white
+              bold: false
+              x: 50
+              y: 180
+              anchor_x: left
+              anchor_y: bottom
+            - type: text
+              text: 3 - lites drops
+              font_size: 25
+              color: orange
+              bold: false
+              x: 50
+              y: 140
+              anchor_x: left
+              anchor_y: bottom                
+            - type: text
+              text: 4 - lites outlanes for special
+              font_size: 25
+              color: pink
+              bold: false
+              x: 50
+              y: 100
+              anchor_x: left
+              anchor_y: bottom  
+        
+#- duration: 3
+#  slides:
+    last_game_score_slide1:
+      widgets:
+      - type: text
+        text: LAST GAME
+        font_size: 50
+        y: 60%
+      - type: text
+        text: (machine|player1_score)
+        x: left+3%
+        y: top-3% #100%
+        anchor_x: left 
+        anchor_y: top        
+        number_grouping: true
+        min_digits: 2
+        font_size: 50
+      - type: text
+        text: (machine|player2_score)
+        x: right-3% #100%
+        y: top-3% #100%
+        anchor_x: right
+        anchor_y: top
+        number_grouping: true
+        min_digits: 2
+        font_size: 50
+      - type: text
+        text: (machine|player3_score)
+        x: left+3%
+        y: bottom+3%
+        anchor_x: left
+        anchor_y: bottom
+        number_grouping: true
+        min_digits: 2
+        font_size: 50
+      - type: text
+        text: (machine|player4_score)
+        x: right-3%
+        y: bottom+3%
+        anchor_x: right
+        anchor_y: bottom
+        number_grouping: true
+        min_digits: 2
+        font_size: 50
+        
+      - type: text
+        text: (machine|credits_string)
+        y: bottom+5%
+        anchor_y: bottom
+        
+      - type: text
+        text: Hi Score (machine|score1_value), (machine|score2_value), (machine|score3_value),
+        #text: (high_score_category)(position)_value
+        y: bottom+15%
+#
+    show_high_scores:
+      - type: Text
+        text: (machine|score1_value)   #HIGH SCORES
+        font_size: 60
+        bold: true
+        anchor_x: center
+        anchor_y: center
+        x: center
+        y: top-100
+      - type: Text
+        text: (machine|score1_label), (machine|score2_label), (machine|score3_label)
+        #style: attract_mode_high_score_display_label
+        y: top-200
+        color: red
+      - type: Text
+        text: (machine|score1_name), (machine|score2_name), (machine|score3_name)
+        #style: attract_mode_high_score_display_name
+        y: top-250
+      - type: Text
+        text: (machine|score1_value), (machine|score2_value), (machine|score3_value)
+        #style: attract_mode_high_score_display_score
+        y: top-300
+        
+      - type: text
+        text: Last match no (machine|last_match_no)
+        #text: last match no e|score3_value)
+        #style: attract_mode_high_score_display_score
+        y: top-350
+    

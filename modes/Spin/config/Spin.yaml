@@ -1,0 +1,67 @@
+#config_version=5
+
+##! mode: Spin
+
+#    Spinner hit scores 10 unlit, 200 when lit.  It's lit when ZONEprog >= 1
+#    Spinner rotates the lit bumper, lit bumper scores 1000, unlit scores 100
+
+mode:
+    start_events: ball_starting
+    priority: 150    
+
+variable_player:
+    Spin_hit:
+        score: 200 if current_player.ZONEprog>=1 else 10 
+        
+    TopPop_PopProfile_unlit_hit:
+        score: 100
+    TopPop_PopProfile_lit_hit:
+        score: 1000
+    RightPop_PopProfile_unlit_hit:
+        score: 100
+    RightPop_PopProfile_lit_hit:
+        score: 1000
+    LeftPop_PopProfile_unlit_hit:
+        score: 100
+    LeftPop_PopProfile_lit_hit:
+        score: 1000
+
+shot_profiles:
+  PopProfile:
+    rotation_pattern: r, r, r
+    states:
+    - name: unlit
+      show: off
+    - name: lit
+      show: on
+   
+shot_groups:
+  PopGroup:
+    shots: TopPop, RightPop, LeftPop
+    rotate_events: Spin_hit
+
+shots:  
+    Spin:
+        switch: s_spin  
+        
+    TopPop:
+        switch: s_t_pop
+        profile: PopProfile
+        advance_events: mode_Spin_started  # this forces start with one pop lit
+        show_tokens:
+            light: l_t_pop
+        reset_events: TopPop_PopProfile_unlit_hit, ball_drain
+
+    LeftPop:
+        switch: s_l_pop
+        profile: PopProfile
+        show_tokens:
+            light: l_l_pop
+        reset_events: LeftPop_PopProfile_unlit_hit, ball_drain
+
+    RightPop:
+        switch: s_r_pop
+        profile: PopProfile
+        show_tokens:
+            light: l_r_pop
+        reset_events: RightPop_PopProfile_unlit_hit, ball_drain

@@ -1,0 +1,19 @@
+#show_version=5 
+##! show: tri_light_show
+
+# block flash
+
+- duration: 1
+  lights:
+    l_T3k: ffffff  
+    l_T5k: ffffff
+    l_T10k: ffffff
+    l_Teb: ff8000
+    l_Tspec: ff0000
+- duration: 1
+  lights:
+    l_T3k: 000000 
+    l_T5k: 000000
+    l_T10k: 000000
+    l_Teb: 000000
+    l_Tspec: 000000

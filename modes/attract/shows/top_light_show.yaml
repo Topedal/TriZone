@@ -1,0 +1,35 @@
+#show_version=5 
+##! show: top_light_show
+
+- duration: 1
+  lights:
+    l_R: 000000
+   # l_spin: ffffff   #
+    l_T: ffffff
+- duration: 1
+  lights:
+    l_spin: 000000
+    l_eject: ff0000
+- duration: 1
+  lights:
+    l_T: 000000
+    l_t_A: ffffff
+- duration: 1
+  lights:
+    l_eject: 000000 
+    l_t_B: ffffff
+- duration: 1
+  lights:
+    l_t_A: 000000
+    l_I: ffffff
+- duration: 1
+  lights:
+    l_t_B: 000000
+    l_R: ffffff
+- duration: 1
+  lights:
+    l_I: 000000
+    l_spin: ffffff
+
+
+

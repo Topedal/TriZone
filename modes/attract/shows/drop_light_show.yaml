@@ -1,0 +1,30 @@
+#show_version=5 
+##! show: drop_light_show
+
+# a purple fade
+
+- duration: 1
+  lights:
+    l_Z: ff00ff  
+    l_O: ff00ff
+    l_N: ff00ff
+    l_E: ff00ff
+- duration: 1
+  lights:
+    l_Z: ff66ff  
+    l_O: ff66ff
+    l_N: ff66ff
+    l_E: ff66ff
+- duration: 1
+  lights:
+    l_Z: ffccff  
+    l_O: ffccff
+    l_N: ffccff
+    l_E: ffccff
+- duration: 1
+  lights:
+    l_Z: 000000
+    l_O: 000000
+    l_N: 000000
+    l_E: 00ff00
+        
