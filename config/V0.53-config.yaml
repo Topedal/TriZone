@@ -1,0 +1,595 @@
+#config_version=5
+
+#hardware:
+#    platform: opp
+#    driverboards: gen2
+    
+#opp:
+#    ports: COM7
+#    #poll_hz: 50   # default is 100
+
+
+#config:
+#- hardware.yaml  # can seperate inro a sep file, maybe not worth it
+#- shots.yaml     # better in modes, maybe?
+    #- keyboard.yaml   # replaced by monitor
+ #- light_player.yaml    # in ..\config\     # I think use this for generanl stuff that is not mode related?
+    
+modes:
+  - base
+  - AB
+  - TRI
+  - ZONE
+  - Spin
+  - outlane
+  - bonus
+  - tilt
+  - credits
+  #- match
+  - high_score
+  #- my_mode
+  #- service
+  
+player_vars:
+               # initail setup values
+    bonus:
+        initial_value: 0     
+    bonus_multiplier:
+        initial_value: 1     # this on game start, multipler carries over on ball drain if <=4
+    TRIprog:
+        initial_value: 2     # prob need a settings mode to sort this
+    ZONEprog:
+        initial_value: 0
+       
+    hold_bm:                     #trying to trap carryover hold bonus multipler
+        initial_value: 1
+        
+    initials:
+        value_type: str
+        initial_value: DRx
+
+    # fred:
+        # initial_value: 0
+    # last_match_no:
+        # initial_value: 13
+        
+machine_vars:
+    # score1_value:
+        # initial_value: 0
+    last_match_no:
+        initial_value: 13
+    fred: 
+        initial_value: 7    
+ 
+displays:
+    window:
+        width: 800
+        height: 600
+        
+slides:
+    #- duration: 5s
+    welcome_slide:
+        widgets:
+            - type: text
+              text: Dave's MPF Test
+              font_size: 50
+              color: green
+            - type: rectangle
+              width: 600
+              height: 60
+              
+slide_player:
+    init_done: welcome_slide
+    
+switches:
+    # outside of matrix
+    s_l_flip:
+        number: 
+    s_r_flip:
+        number: 
+
+    # col 1
+    s_tilt_pend:
+        number: 
+        tags: tilt_warning    # should use this for a sound or a slide
+    s_tilt_ball:
+        number: 
+        tags: slam_tilt
+    s_start:
+        number: 
+        tags: start
+    s_r_coin: 
+        number: 
+    s_c_coin:
+        number:
+    s_l_coin: 
+       number: 
+    s_tilt_slam_cd:
+       number: 
+       tags: slam_tilt
+    s_hs_reset:
+       number: 
+       tags: score_reset, service_hiscore_reset
+    
+    # col 2
+    s_outhole:
+        number: 
+        tags: 
+    s_t_A:
+        number: 
+        tags: playfield_active, A, bonus
+    s_t_B:
+        number:
+        tags: playfield_active, B, bonus
+    s_tl_sup: 
+        number: 
+        tags: playfield_active, tenpt
+    s_t_pop:
+        number:
+        tags: pops
+    s_l_pop: 
+       number: 
+       tags: pops
+    s_r_pop:
+       number:
+       tags: pops
+    s_O_drop:
+       number: 
+       tags: zone
+    
+    # col 3
+    s_tr_sup:
+        number: 
+        tags: playfield_active, tenpt
+    s_R:
+        number: 
+        tags: playfield_active, tri, bonus
+    s_I:
+        number:
+        tags: playfield_active, tri, bonus
+    s_E_drop: 
+        number: 
+        tags: zone
+    s_br_sup:
+        number:
+        tags: playfield_active, fiftypt
+    s_r_outlane: 
+       number: 
+       tags: playfield_active, outlane
+    s_r_inlane:
+       number:
+       tags: playfield_active, B, bonus #,inlane
+    s_r_sling:
+       number: 
+       tags: twentypt
+    
+    # col 4
+    s_eject:
+        number: 
+        #tags: playfield_active    # not needed as in ball device
+    s_l_sling:
+        number: 
+        tags: twentypt
+    s_l_inlane:
+        number:
+        tags: playfield_active, A, bonus #,inlane
+    s_l_outlane: 
+        number: 
+        tags: playfield_active, outlane
+    s_bl_sup:
+        number:
+        tags: playfield_active, fiftypt
+    s_Z_drop: 
+       number: 
+       tags: zone
+    s_spin:
+       number:
+       tags: playfield_active
+    s_T:
+       number: 
+       tags: playfield_active, tri, bonus
+    
+    # col 5
+    s_N_drop:
+        number: 
+        tags: zone
+    s_tilt_slam_pf:
+        number: 
+        tags: slam_tilt
+    s_ZONE_series:      # not sure this is needed as drop_target_bank monitors all down
+        number:
+        tags: 
+
+lights:
+    # col 1
+    l_1k:
+        number:
+        default_on_color: ffffff
+        tags: bonus
+    l_2k:
+        number:
+        default_on_color: ffffff
+        tags: bonus
+    l_3k:
+        number:
+        default_on_color: ffffff
+        tags: bonus
+    l_4k:
+        number:
+        default_on_color: ffffff
+        tags: bonus
+    l_5k:
+        number:
+        default_on_color: ffffff
+        tags: bonus
+    l_6k:
+        number:
+        default_on_color: ffffff
+        tags: bonus
+    l_7k:
+        number:
+        default_on_color: ffffff
+        tags: bonus
+        
+    # col 2
+    l_8k:
+        number:
+        default_on_color: ffffff
+        tags: bonus
+    l_9k:
+        number:
+        default_on_color: ffffff
+        tags: bonus
+    l_10k:
+        number:
+        default_on_color: FF8C00
+        tags: bonus
+    l_2X:
+        number:
+        default_on_color: ffffff
+        tags: bmult
+    l_3X:
+        number:
+        default_on_color: ffffff
+        tags: bmult
+    l_4X:
+        number:
+        default_on_color: ffffff
+        tags: bmult
+    l_5X:
+        number:
+        default_on_color: ffffff
+        tags: bmult
+    
+    # col 3
+    l_T:
+        number:
+        default_on_color: ffffff
+    l_R:
+        number:
+        default_on_color: ffffff
+    l_I:
+        number:
+        default_on_color: ffffff
+    l_Z:
+        number:
+        default_on_color: FF8C00
+        tags: drops
+    l_O:
+        number:
+        default_on_color: FF8C00
+        tags: drops
+    l_N:
+        number:
+        default_on_color: FF8C00
+        tags: drops
+    l_E:
+        number:
+        default_on_color: FF8C00
+        tags: drops
+    l_T3k:
+        number:
+        default_on_color: ffffff
+
+    # col 4
+    l_T5k:
+        number:
+        default_on_color: ffffff
+    l_T10k:
+        number:
+        default_on_color: ffffff
+    l_Teb:
+        number:
+        default_on_color: FF8C00
+    l_Tspec:
+        number:
+        default_on_color: ff0000
+    l_l_spec:
+        number:
+        default_on_color: ff0000
+    l_r_spec:
+        number:
+        default_on_color: ff0000
+    l_shoot_again:
+        number:
+        default_on_color: FF8C00
+    l_spin:
+        number:
+        default_on_color: FF8C00
+
+    # col 5
+    l_1:
+        number:
+        default_on_color: ffffff
+    l_2:
+        number:
+        default_on_color: ffffff
+    l_3:
+        number:
+        default_on_color: FF8C00
+    l_4:
+        number:
+        default_on_color: ff0000
+    l_t_pop:
+        number:
+        default_on_color: ffffff
+    l_l_pop:
+        number:
+        default_on_color: ffffff
+    l_r_pop:
+        number:
+        default_on_color: ffffff
+
+# col 6
+    l_t_A:
+        number:
+        default_on_color: ffffff
+        tags: lA
+    l_t_B:
+        number:
+        default_on_color: ffffff
+        tags: lB
+    l_b_A:
+        number:
+        default_on_color: ffffff
+        tags: lA
+    l_b_B:
+        number:
+        default_on_color: ffffff
+        tags: lB
+    l_eject:
+        number:
+        default_on_color: FF8C00
+    
+    # col 7
+    l_1cplay:
+        number:
+        default_on_color: ffffff
+    l_2cplay:
+        number:
+        default_on_color: ffffff
+    l_3cplay:
+        number:
+        default_on_color: ffffff
+    l_4cplay:
+        number:
+        default_on_color: ffffff
+    l_match:
+        number:
+        default_on_color: ffffff
+    l_ballip:
+        number:
+        default_on_color: ffffff
+    l_credits_apron:
+        number:
+        default_on_color: ffffff
+
+# col 8
+    l_p1up:
+        number:
+        default_on_color: ffffff
+    l_p2up:
+        number:
+        default_on_color: ffffff
+    l_p3up:
+        number:
+        default_on_color: ffffff
+    l_p4up:
+        number:
+        default_on_color: ffffff
+    l_tilt:
+        number:
+        default_on_color: ffffff
+    l_gover:
+        number:
+        default_on_color: ffffff
+    l_shoot_again_hb:
+        number:
+        default_on_color: ffffff
+    l_hiscore:
+        number:
+        default_on_color: ffffff   
+    
+coils:
+    c_ball_rel:
+        number:
+    c_eject:
+        number:
+    c_Z:
+        number:
+    c_O:
+        number:
+    c_N:
+        number:
+    c_E:
+        number:
+    c_knock:
+        number:
+    c_t_pop:
+        number:
+    c_l_pop:
+        number:
+    c_r_pop:
+        number:
+    c_l_sling:
+        number:
+        default_pulse_ms: 5000
+    c_r_sling:
+        number:
+    c_l_flip:     # use eos or seperate coils?
+        number:
+        default_hold_power: 0.5    # not sure if needed with eos
+    c_r_flip:
+        number: 
+        default_hold_power: 0.5
+    
+drop_targets:
+     Zdrop:
+        switch: s_Z_drop
+        reset_coil: c_Z
+     Odrop:
+        switch: s_O_drop
+        reset_coil: c_O
+     Ndrop:
+        switch: s_N_drop
+        reset_coil: c_N
+     Edrop:
+        switch: s_E_drop
+        reset_coil: c_E
+        
+drop_target_banks:
+                       # not a bank as such, but easy reset when all down
+    ZONE_drops:
+        drop_targets: Zdrop, Odrop, Ndrop, Edrop
+        reset_coils: c_Z, c_O, c_N, c_E
+        reset_on_complete: 1s
+        reset_events: #H_ro_hit , I_ro_hit  # this fot tyesying, not in game play
+        
+ball_devices:
+    bd_drain:
+        ball_switches: s_outhole
+        eject_coil: c_ball_rel
+        ##eject_targets: bd_plunger_lane
+        #>>eject_targets: bd_plunger
+        eject_targets: playfield           #no plunger lane sw
+        tags: drain, home, trough
+        debug: true
+        
+    bd_eject_hole:
+        ball_switches: s_eject
+        eject_coil: c_eject
+        #eject_timeout: 2s   
+        
+autofire_coils:
+    af_l_sling:
+        coil: c_l_sling
+        switch: s_l_sling
+    af_r_sling:
+        coil: c_r_sling 
+        switch: s_r_sling
+    af_t_pop:
+        coil: c_t_pop
+        switch: s_t_pop
+    af_l_pop:
+        coil: c_l_pop
+        switch: s_l_pop
+    af_r_pop:
+        coil: c_r_pop
+        switch: s_r_pop
+        
+playfields:
+    playfield:
+        #default_source_device: bd_plunger
+        default_source_device: bd_drain
+        tags: default
+        
+flippers:
+    f_l_flip:
+        main_coil: c_l_flip
+        # # hold_coil: c_flipper_left_hold   # use eos?
+        activation_switch: s_l_flip
+    f_r_flip:
+        main_coil: c_r_flip
+        # # hold_coil: c_flipper_right_hold
+        activation_switch: s_r_flip
+        
+virtual_platform_start_active_switches:
+    s_outhole                   #puts a ball in the outhole
+    
+info_lights:
+                    # l_1cplay is can play ie coined up,  l_p1up is player 1 playing now (handled in light_player)
+    # player_1:
+        # light: l_1cplay  #doesnt work as it should
+                        # # ok for GTB all player lamps l_?cplay come on at same time
+                        # # nok for WMS only one light eg 3 player game only l_3cplay is on   
+                        #    see game.yaml for howto do it for WMS                        
+    # player_2:
+        # light: l_2cplay
+    # player_3:
+        # light: l_3cplay
+    # player_4:
+        # light: l_4cplay
+    tilt:               # tilt and gover work
+        light: l_tilt
+    game_over:
+        light: l_gover
+        
+        #l_match      # do these in modes?
+        #l_hiscore
+        #l_ballip     # not needed for display
+
+
+credits:
+         # http://docs.missionpinball.org/en/latest/game_logic/credits/index.html
+         #   this copied from C:\Users\David\AppData\Local\Programs\Python\Python36-32\Lib\site-packages\mpf\modes\credits\config
+    max_credits: 12
+    free_play: no     # Changing this makes no difference to free_play / credit.  
+                      # Disable the credit mode in modes: section above to enable free play
+    #service_credits_switch: s_esc
+    switches:
+        - switch: s_l_coin
+          type: money
+          value: .25
+        - switch: s_c_coin
+          type: money
+          value: .50
+        - switch: s_r_coin
+          type: token
+          value: 1
+    pricing_tiers:
+        - price: .50
+          credits: 1
+        - price: 2
+          credits: 5
+    fractional_credit_expiration_time: 15m
+    credit_expiration_time: 2h
+    persist_credits_while_off_time: 1h
+    free_play_string: Free Play
+    credits_string: Credits
+    events:
+        - event: TRIscoreSpec
+          type: TRIspec
+          credits: 1
+        - event: has_match
+          type: match
+          credits: 1
+        - event: ZONEscoreSpec
+          type: ZONEspec
+          credits: 1
+        - event: high_score_award_display
+          type: HSspec
+          credits: 3
+   
+game:
+  balls_per_game: 1
+  max_players: 4
+  
+# settings:
+    # score1_value:
+        # label: service_hiscore_reset
+        # values:
+            # 250: Default HS
+        # default: 250
+        # key_type: int
+        # sort: 100
+        
