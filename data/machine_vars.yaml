@@ -1,0 +1,9 @@
+fred:
+  expire: null
+  value: 7
+free_play:
+  expire: null
+  value: true
+last_match_no:
+  expire: null
+  value: 13

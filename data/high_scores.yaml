@@ -1,0 +1,4 @@
+score:
+- !!python/tuple
+  - DRx
+  - 56500

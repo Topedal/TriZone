@@ -1,0 +1,24 @@
+HSspec:
+  count: 4
+  total_value: 12.0
+TRIspec:
+  count: 1
+  total_value: 1.0
+dollars:
+  count: 25
+  total_value: 30.1
+match:
+  count: 45
+  total_value: 44.25
+money:
+  count: 117
+  total_value: 43.0
+replay:
+  count: 3
+  total_value: 0.75
+special:
+  count: 38
+  total_value: 42.0
+token:
+  count: 212
+  total_value: 212.0
